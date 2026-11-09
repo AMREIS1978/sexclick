@@ -6,9 +6,9 @@ if (!in_array(wp_get_environment_type(), ['local','development','staging'], true
 }
 if (!class_exists('WooCommerce')) WP_CLI::error('Instale e ative WooCommerce antes de configurar.');
 if (get_option('scops_sales_enabled',false)) WP_CLI::error('As vendas já estão ativadas. Reveja a instalação manualmente.');
-if (!function_exists('wc_create_pages')) require_once WC_ABSPATH.'includes/admin/wc-admin-functions.php';
+if (!is_callable(['WC_Install','create_pages'])) WP_CLI::error('Esta versão WooCommerce não disponibiliza o instalador de páginas esperado.');
 $before=[];foreach(['shop','cart','checkout','myaccount'] as $slug)$before[$slug]=wc_get_page_id($slug);
-wc_create_pages();
+WC_Install::create_pages();
 $shortcodes=['cart'=>'woocommerce_cart','checkout'=>'woocommerce_checkout','myaccount'=>'woocommerce_my_account'];
 $pages=['shop'=>'Coleção','cart'=>'Carrinho','checkout'=>'Finalizar compra','myaccount'=>'A minha conta'];
 foreach($pages as $slug=>$title){

@@ -23,7 +23,9 @@ const assert = require('node:assert/strict');
   await page.screenshot({path:`test-results/mobile-${width}.png`,fullPage:true});
  }
  await page.goto(base+'/?s=Produto+CI&post_type=product');await page.getByRole('heading',{name:'Produto CI',exact:true}).waitFor();
- await page.locator('.woocommerce-loop-product__link').first().click();
+ // WooCommerce may redirect a single matching search result straight to the product.
+ if(await page.locator('.product_title').count()===0) await page.getByRole('link',{name:/Produto CI/}).first().click();
+ await page.locator('.product_title').waitFor();
  assert.equal(await page.locator('.single_add_to_cart_button').count(),0,'No purchase button before launch');
  assert.deepEqual(errors,[]);
  await browser.close();console.log('PASS: responsive widths, real search, modal, product and launch protection.');

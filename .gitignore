@@ -13,3 +13,5 @@ node_modules/
 test-results/
 dist/
 *.mo
+
+vendor-cache/

@@ -37,6 +37,12 @@ jobs:
           ci_admin_pass="$(openssl rand -hex 24)"
           echo "::add-mask::$ci_admin_pass"
           printf '%s\n' "$ci_admin_pass" | wp --path=/tmp/sexclick-wp core install --url=http://127.0.0.1:8080 --title=SEXCLICK --admin_user=sexclick-ci --admin_email=ci@example.invalid --skip-email --prompt=admin_password
+          wp --path=/tmp/sexclick-wp plugin install woocommerce
+          cp -R wp-content/themes/sexclick /tmp/sexclick-wp/wp-content/themes/
+          cp -R wp-content/plugins/sexclick-operations /tmp/sexclick-wp/wp-content/plugins/
+          mkdir -p /tmp/sexclick-wp/wp-content/mu-plugins
+          cp wp-content/mu-plugins/sexclick-first-run.php /tmp/sexclick-wp/wp-content/mu-plugins/
+          SEXCLICK_CI=1 wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/bootstrap-smoke.php"
           bash scripts/setup-staging.sh /tmp/sexclick-wp
           SEXCLICK_CI=1 wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/wordpress-smoke.php"
       - name: Iniciar loja de testes

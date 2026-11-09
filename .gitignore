@@ -9,3 +9,7 @@ wp-content/cache/
 *.zip
 vendor/
 node_modules/
+.staging-backups/
+test-results/
+dist/
+*.mo

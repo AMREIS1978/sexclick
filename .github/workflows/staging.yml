@@ -1,0 +1,62 @@
+name: Loja real e pacotes
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  woocommerce:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: sexclick-ci-ephemeral
+          MYSQL_DATABASE: sexclick_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -psexclick-ci-ephemeral"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mysqli, mbstring, curl, gd, zip, intl
+          tools: wp-cli
+          coverage: none
+      - name: Instalar WordPress local efémero
+        env:
+          WP_ENVIRONMENT_TYPE: local
+        run: |
+          mkdir -p /tmp/sexclick-wp
+          wp --path=/tmp/sexclick-wp core download
+          wp --path=/tmp/sexclick-wp config create --dbname=sexclick_ci --dbuser=root --dbpass=sexclick-ci-ephemeral --dbhost=127.0.0.1:3306
+          openssl rand -hex 24 | wp --path=/tmp/sexclick-wp core install --url=http://127.0.0.1:8080 --title=SEXCLICK --admin_user=sexclick-ci --admin_email=ci@example.invalid --skip-email --prompt=admin_password
+          bash scripts/setup-staging.sh /tmp/sexclick-wp
+          SEXCLICK_CI=1 wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/wordpress-smoke.php"
+      - name: Iniciar loja de testes
+        env:
+          WP_ENVIRONMENT_TYPE: local
+        run: |
+          wp --path=/tmp/sexclick-wp server --host=127.0.0.1 --port=8080 > /tmp/sexclick-server.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8080 > /dev/null && break; sleep 1; done
+      - name: Testar no navegador
+        run: |
+          npm install --prefix /tmp/sexclick-ui playwright@1.62.1
+          /tmp/sexclick-ui/node_modules/.bin/playwright install --with-deps chromium
+          PLAYWRIGHT_MODULE=/tmp/sexclick-ui/node_modules/playwright node tests/mobile.cjs
+      - name: Gerar pacotes instaláveis
+        run: python3 scripts/package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SEXCLICK-WordPress
+          path: dist/*.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SEXCLICK-testes-mobile
+          path: test-results/
+          if-no-files-found: ignore

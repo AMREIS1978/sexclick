@@ -1,6 +1,8 @@
 from pathlib import Path
 from zipfile import ZipFile,ZIP_DEFLATED
+import subprocess,sys
 root=Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable,str(root/'scripts/compile-translations.py')],check=True)
 out=root/'dist';out.mkdir(exist_ok=True)
 for name,folder in [('sexclick-theme','wp-content/themes/sexclick'),('sexclick-operations','wp-content/plugins/sexclick-operations')]:
  path=root/folder

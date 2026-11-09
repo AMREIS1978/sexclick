@@ -17,7 +17,7 @@ WooCommerce + conector fornecido/validado pela Dreamlove. O tema não substitui 
 | SKU/EAN, marcas, tags, SEO | Dados normais do produto | Confirmar mapeamento e preservação de identificadores |
 | Tamanhos, cores e variantes | Produtos variáveis nativos | Testar preços, imagem e stock por SKU de variante |
 | Fotografias e descrições | Galeria e conteúdo WooCommerce | Credenciais/licença, importação e miniaturas pendentes |
-| Seis idiomas | Tema preparado para gettext; seletor opcional do plugin multilingue | PT/EN/ES/FR/DE/IT do catálogo; confirmar plugin e traduções da interface; não existe tradução automática neste tema |
+| Seis idiomas | Tema traduzido PT/EN/ES/FR/DE/IT; seletor opcional do plugin multilingue | PT/EN/ES/FR/DE/IT do catálogo; confirmar plugin e traduções da interface; não existe tradução automática neste tema |
 | Mapeamento de categorias | Taxonomia product_cat | Validar categorias de origem/destino no conector |
 | Stock em tempo real | Disponibilidade nativa | Conector pendente; medir atraso e testar stock zero, reposição e variante |
 | PVD e PVR | Custo interno e preço de venda separados | Confirmar bases de IVA, arredondamento, margens, promoções e alterações de custo |

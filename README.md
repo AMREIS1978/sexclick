@@ -26,3 +26,25 @@ Não existe sincronização “em tempo real” ativa neste repositório. Os int
 
 ## Testes
 `python3 scripts/check_project.py` verifica estrutura e ficheiros. `node --check wp-content/themes/sexclick/assets/shop.js` verifica JavaScript. Com PHP 8.1+: executar `php tests/contract-test.php`, `php tests/operations-test.php` e `find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l`. GitHub Actions executa estes checks em PHP 8.1 e 8.3. Testes end-to-end dependem de uma loja de staging e do conector Dreamlove.
+
+## Instalação assistida na Hostinger
+
+O alojamento é o existente: **sexclick.shop na Hostinger**. O GitHub é a origem do código, não outro alojamento. Preservar a página atual; instalar/testar numa instalação WordPress separada em `/loja`, com base de dados própria e backup atualizado.
+
+Depois de instalar WordPress e definir `WP_ENVIRONMENT_TYPE=staging` nessa instalação, com SSH e WP-CLI disponíveis:
+
+```bash
+bash scripts/setup-staging.sh /caminho/real/da/instalacao/loja
+```
+
+O script compila traduções, copia apenas o tema e o módulo Operations, instala/ativa WooCommerce, instala PT-PT, cria páginas e menu em falta e mantém vendas bloqueadas. Não cria credenciais, não configura impostos/moradas fictícios e não substitui a página na raiz. Recusa produção e uma loja com vendas ativadas. Faz cópias das duas pastas existentes antes de atualizar; a cópia integral da base de dados deve existir previamente.
+
+Sem SSH: usar os dois ZIP de instalação gerados por `python3 scripts/package.py`, em Aparência > Temas e Plugins > Adicionar plugin. Os pacotes são também produzidos pelo workflow **Loja real e pacotes** nos Artifacts de GitHub Actions, após passar os testes.
+
+## Idiomas
+
+O tema inclui traduções públicas EN/ES/FR/DE/IT, compiladas para MO por `scripts/compile-translations.py`; PT-PT é o idioma de origem. O seletor só aparece se o plugin multilingue disponibilizar `pll_the_languages`. Isto não inclui nem licencia o módulo WooCommerce multilingue. A Dreamlove deve confirmar a solução multilingue suportada para produtos, variantes, URLs, carrinho e checkout.
+
+## Testes adicionais
+
+O workflow `staging.yml` prepara WordPress/WooCommerce reais numa base de dados efémera de CI, testa páginas, stock e proteção de compras, e executa testes de navegador a 320/375/390/430/1280 px. Não contacta a Dreamlove nem processa pagamentos. O resultado dos testes reais deve ser consultado em Actions; definir um workflow não prova que passou.

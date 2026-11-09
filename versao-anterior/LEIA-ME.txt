@@ -1,0 +1,4 @@
+SEXCLICK — FASHION EDITORIAL SERIF
+Tipografia alterada para uma estética editorial de alta moda, inspirada no contraste elegante de revistas de moda, usando famílias serif disponíveis no sistema (Bodoni/Didot e fallback).
+Não inclui nem distribui a fonte/logótipo proprietário da Vogue.
+Extraia todo o ZIP em public_html.

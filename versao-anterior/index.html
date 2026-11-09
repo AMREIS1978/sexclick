@@ -1,0 +1,204 @@
+<!doctype html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEXCLICK — O Luxo do Desejo</title><style>
+:root{--black:#050303;--burg:#650008;--red:#a40010;--gold:#d4af37;--gold2:#eed477;--line:#5b4513}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--gold2);font-family:Arial,sans-serif}a{text-decoration:none;color:inherit}button,input{font:inherit}
+header{height:86px;display:flex;align-items:center;gap:35px;padding:0 5%;background:#060303eF;position:sticky;top:0;z-index:20;border-bottom:1px solid #49370f}.logo{font:30px Georgia,serif;letter-spacing:5px;color:var(--gold);font-weight:bold;white-space:nowrap}.logo span{color:#a90010}.search{max-width:540px;flex:1;display:flex;border:1px solid #604913;border-radius:999px;overflow:hidden;background:#0e0808}.search input{width:100%;border:0;background:transparent;outline:0;padding:13px 18px;color:#e6ca69}.search button{border:0;background:transparent;color:var(--gold);padding:0 18px}.right{margin-left:auto;display:flex;gap:22px;font-size:13px;align-items:center}.right b{cursor:pointer}
+nav{display:flex;justify-content:center;gap:32px;padding:14px 3%;background:#0a0505;border-bottom:1px solid #4d390e;overflow:auto;white-space:nowrap}nav a{font-size:12px;font-weight:bold;color:#d8ba59}nav a:hover{color:white}
+.hero{height:670px;position:relative;background:url("assets/hero.png") center/cover no-repeat}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#040000e8 0%,#08000099 34%,transparent 65%),linear-gradient(0deg,#050303 0%,transparent 20%)}.copy{position:absolute;z-index:2;left:8%;top:22%;max-width:560px}.kicker{letter-spacing:6px;font-size:10px;color:#cba638}.copy h1{font:76px/.95 Georgia,serif;color:var(--gold2);margin:18px 0}.copy h1 em{color:#b00012;font-weight:normal}.copy p{font:italic 22px Georgia,serif;margin:0 0 28px}.btn{border:1px solid var(--gold);background:transparent;color:var(--gold2);padding:13px 23px;border-radius:999px;font-weight:bold;cursor:pointer}.btn:hover{background:var(--gold);color:#140b00}
+main{max-width:1250px;margin:auto;padding:60px 24px}.statement{text-align:center;max-width:700px;margin:0 auto 55px}.statement h2{font:42px Georgia,serif;color:var(--gold);margin:12px}.statement p{color:#a98d3d;line-height:1.7}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.cat{height:190px;border:1px solid #5b4513;border-radius:15px;background:linear-gradient(145deg,#290005,#0a0505);display:flex;align-items:end;padding:22px;position:relative;overflow:hidden}.cat:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;right:-35px;top:-35px;background:#7b000c55}.cat div{position:relative;z-index:2}.cat small{display:block;letter-spacing:3px;color:#9d8031;margin-bottom:7px}.cat b{font:25px Georgia,serif;color:var(--gold)}
+.section-title{display:flex;align-items:end;justify-content:space-between;margin:70px 0 25px}.section-title h2{font:38px Georgia,serif;color:var(--gold);margin:0}.section-title span{font-size:12px;color:#9c8134}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.card{border:1px solid #4e3b10;border-radius:14px;background:#0b0606;overflow:hidden}.visual{height:235px;display:grid;place-items:center;background:radial-gradient(circle,#520008,#100003 58%,#080505);font-size:60px;color:var(--gold)}.info{padding:17px}.info small{color:#9c8030}.info h3{margin:7px 0;color:#e4c65e}.price{color:var(--gold);font-size:21px;font-weight:bold;margin:14px 0}.card .btn{width:100%}
+.promise{margin-top:70px;border-top:1px solid #59420f;border-bottom:1px solid #59420f;display:grid;grid-template-columns:repeat(3,1fr)}.promise div{text-align:center;padding:30px}.promise b{display:block;color:var(--gold);margin-bottom:8px}.promise small{color:#91762d}
+footer{text-align:center;padding:50px;color:#806a2b}.age{position:fixed;inset:0;z-index:99;background:#030202f6;display:grid;place-items:center}.age div{text-align:center;max-width:450px;padding:40px}.age h2{font:40px Georgia,serif;color:var(--gold)}
+aside{position:fixed;right:0;top:0;width:min(420px,100%);height:100vh;z-index:50;background:#0c0606;padding:25px;box-shadow:-20px 0 60px #000;overflow:auto}.row{display:flex;justify-content:space-between;gap:10px;padding:15px 0;border-bottom:1px solid #4c390e}aside[hidden]{display:none}
+@media(max-width:800px){header{gap:12px}.search{display:none}.right span{display:none}nav{justify-content:flex-start}.hero{height:620px;background-position:58% center}.copy{left:25px;right:25px;top:18%}.copy h1{font-size:54px}.categories,.products{grid-template-columns:repeat(2,1fr)}.promise{grid-template-columns:1fr}}
+@media(max-width:480px){.products{grid-template-columns:1fr}.hero{height:600px}.categories{grid-template-columns:1fr 1fr}.cat{height:145px}}
+</style>
+<style>
+.hero:before{
+ content:"";position:absolute;z-index:1;left:0;top:0;bottom:0;width:57%;
+ background:linear-gradient(90deg,#050303 0%,#080303f7 55%,#080303c9 78%,transparent 100%);
+}
+.hero:after{
+ content:"";position:absolute;z-index:1;inset:0;
+ background:linear-gradient(0deg,#050303 0%,transparent 18%);
+}
+.clean-copy{top:25%;max-width:510px}
+.clean-copy .kicker{margin-bottom:22px}
+.clean-copy h1{font-size:72px;line-height:.92;margin:0 0 22px}
+.clean-copy h1 em{display:inline;color:#b00012}
+.clean-copy p{font:18px/1.55 Arial,sans-serif;color:#d4af37;max-width:420px;margin:0 0 28px}
+.clean-copy .btn{padding:14px 28px}
+@media(max-width:800px){
+ .hero:before{width:100%;background:linear-gradient(90deg,#050303f8 0%,#080303e8 62%,#08030388 100%)}
+ .clean-copy{top:23%;left:28px;right:28px}
+ .clean-copy h1{font-size:52px}
+ .clean-copy p{font-size:16px}
+}
+</style>
+
+<style>
+:root{--black:#050505;--burg:#570006;--red:#85000b;--gold:#c5a44a;--gold2:#f2eee5;--line:#262626}
+body{background:#050505;color:#f2eee5;font-family:Arial,Helvetica,sans-serif}
+header{height:78px;background:#050505f5;border-bottom:1px solid #222;padding:0 3.5%}
+.logo{font-family:Arial,Helvetica,sans-serif;font-size:27px;letter-spacing:7px;color:#f5f2eb;font-weight:700}.logo span{color:#f5f2eb}
+.search{border:1px solid #333;background:#090909}.search input{color:#eee}.search button{color:#eee}
+.right{color:#eaeaea}nav{background:#050505;border-bottom:1px solid #222;gap:36px}nav a{color:#e7e3dc;font-size:11px;letter-spacing:1px}
+.hero{height:720px}.hero:before{width:62%;background:linear-gradient(90deg,#050505 0%,#050505f5 48%,#050505b5 72%,transparent 100%)}
+.clean-copy{top:29%;max-width:570px}.clean-copy .kicker{color:#c5a44a;font-size:10px;letter-spacing:7px}
+.clean-copy h1{font-family:Georgia,serif;font-size:78px;font-weight:400;color:#f2eee5;letter-spacing:-2px}.clean-copy h1 em{color:#8f000c}
+.clean-copy p{font:16px/1.6 Arial,sans-serif;color:#c9c4bb;letter-spacing:.2px}
+.btn{border:1px solid #e8e3d9;color:#eee;background:transparent;border-radius:0;padding:13px 26px;font-size:11px;letter-spacing:1.4px}.btn:hover{background:#eee;color:#050505}
+main{max-width:1380px;padding-top:90px}.statement{max-width:620px;margin-bottom:80px}.statement .kicker{color:#8d8a83}.statement h2{font:42px Georgia,serif;color:#f0ede6;font-weight:400}.statement p{color:#999;line-height:1.7}
+.categories{gap:2px}.cat{height:260px;border:0;border-radius:0;background:linear-gradient(145deg,#220004,#080808);padding:28px}.cat:after{display:none}.cat small{color:#999;letter-spacing:2px}.cat b{color:#f2eee5;font:28px Georgia,serif;font-weight:400}
+.section-title{margin-top:100px;border-bottom:1px solid #292929;padding-bottom:17px}.section-title h2{color:#f2eee5;font:38px Georgia,serif;font-weight:400}.section-title span{color:#aaa;letter-spacing:1px}
+.products{gap:2px}.card{border:0;border-radius:0;background:#090909}.visual{height:330px;background:radial-gradient(circle,#350005,#0a0808 55%,#080808);color:#c5a44a}.info{padding:20px 4px 30px}.info small{color:#888;letter-spacing:1px}.info h3{color:#eee;font-weight:400}.price{color:#ddd;font-size:17px;font-weight:400}.card .btn{width:auto;border-color:#555}
+.promise{margin-top:100px;border-color:#282828}.promise div{padding:40px}.promise b{color:#eee;font-size:11px;letter-spacing:1.5px}.promise small{color:#777}
+footer{border-top:1px solid #222;color:#777}.age{background:#030303f8}.age h2{color:#eee}.age .logo span{color:#eee}
+aside{background:#080808}.row{border-color:#282828}
+@media(max-width:800px){.hero{height:650px}.hero:before{width:100%;background:linear-gradient(90deg,#050505f8,#050505d5 65%,#05050588)}.clean-copy h1{font-size:54px}.categories{gap:2px}.cat{height:180px}}
+</style>
+<style>
+@media(max-width:800px){
+body{padding-bottom:70px;overflow-x:hidden}
+header{height:62px;padding:0 16px;display:grid;grid-template-columns:1fr auto;gap:10px}
+header .logo{font-size:20px;letter-spacing:4px}.search{display:none}.right{gap:14px}.right>span{display:none}
+nav{justify-content:flex-start;gap:0;padding:0 8px;height:42px;scrollbar-width:none;-webkit-overflow-scrolling:touch}nav::-webkit-scrollbar{display:none}nav a{padding:14px 12px;font-size:10px}
+.hero{height:72svh;min-height:550px;max-height:720px;background-position:62% center}
+.hero:before{width:100%;background:linear-gradient(180deg,#05050522 0%,#05050544 35%,#050505ee 73%,#050505 100%)}
+.hero:after{background:linear-gradient(0deg,#050505 0%,transparent 34%)}
+.clean-copy{left:22px;right:22px;top:auto;bottom:48px;max-width:none}
+.clean-copy .kicker{font-size:9px;letter-spacing:4px;margin-bottom:13px}
+.clean-copy h1{font-size:48px;line-height:.92;letter-spacing:-1px;margin-bottom:15px}
+.clean-copy p{font-size:14px;line-height:1.5;max-width:330px;margin-bottom:21px}
+.clean-copy .btn{min-height:46px;padding:0 23px}
+main{padding:52px 16px 25px}.statement{text-align:left;margin-bottom:46px}.statement h2{font-size:34px;line-height:1.08;margin:12px 0}.statement p{font-size:14px}
+.categories{display:flex;overflow-x:auto;gap:8px;margin-right:-16px;padding-right:16px;scroll-snap-type:x mandatory;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}
+.cat{min-width:78vw;height:245px;scroll-snap-align:start;padding:24px}.cat b{font-size:29px}
+.section-title{margin:65px 0 18px}.section-title h2{font-size:31px}.section-title span{font-size:9px}
+.products{display:flex;overflow-x:auto;gap:8px;margin-right:-16px;padding-right:16px;scroll-snap-type:x mandatory;scrollbar-width:none}.products::-webkit-scrollbar{display:none}
+.card{min-width:78vw;scroll-snap-align:start}.visual{height:320px}.info{padding:18px 8px 24px}.card .btn{width:100%;min-height:46px}
+.promise{display:block;margin-top:68px}.promise div{padding:26px 12px;border-bottom:1px solid #222}
+footer{padding:42px 20px 100px}aside{width:100%;padding:20px 18px 100px}.age{padding:22px}.age div{padding:25px 10px}.age h2{font-size:34px}
+.mobilebar{display:grid!important;grid-template-columns:repeat(4,1fr);position:fixed;z-index:45;left:0;right:0;bottom:0;height:68px;background:#070707f7;border-top:1px solid #2c2c2c;backdrop-filter:blur(14px)}
+.mobilebar button{border:0;background:transparent;color:#c8c4bb;font-size:9px;letter-spacing:.6px;display:grid;place-items:center;align-content:center;gap:5px}.mobilebar i{font-style:normal;font-size:19px;color:#eee}
+}
+@media(min-width:801px){.mobilebar{display:none}}
+</style><style>
+#lang{background:#050505;color:#ddd;border:1px solid #333;padding:8px 9px;font-size:11px;outline:none}
+@media(max-width:800px){#lang{display:block!important;padding:6px;border:0;background:transparent}.right{margin-left:0}}
+</style><style>
+.cartTrigger{position:relative;display:grid;place-items:center;width:38px;height:38px;cursor:pointer}
+.cartIcon{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;color:#eee}
+.cartTrigger:hover .cartIcon{color:#c5a44a}
+.cartBadge{position:absolute;right:-2px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#8f000c;color:white;font:700 10px/17px Arial;text-align:center}
+.mobilebar i .cartIcon{width:20px;height:20px;display:block}
+@media(max-width:800px){.cartTrigger{width:34px;height:34px}.cartIcon{width:21px;height:21px}.cartBadge{right:-3px;top:-3px}}
+</style><style>.social-links{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:24px auto 16px}.social-link{display:grid;place-items:center;width:44px;height:44px;border:0;background:white;border-radius:3px;cursor:pointer}.social-link:focus-visible{outline:2px solid #111;outline-offset:3px}.social-mark{display:block;width:26px;height:30px;background-image:url('assets/redes-sociais.png');background-repeat:no-repeat;background-size:392px 47px}.social-link:hover{opacity:.6}.social-notice{font:12px/1.5 Arial,sans-serif;margin:8px 0;color:inherit}</style><style id="uniform-typography">
+:root{--site-font:Helvetica,Arial,Tahoma,sans-serif}
+body,body *{font-family:var(--site-font)!important;font-style:normal!important}
+.logo{font-weight:700!important;letter-spacing:2px!important;transform:none!important}
+h1,h2,h3,.cat b{font-weight:400!important;letter-spacing:-.025em!important}
+.clean-copy h1{font-size:clamp(42px,6vw,76px)!important;line-height:1.04!important}
+.statement h2{font-size:clamp(28px,4vw,42px)!important;line-height:1.15!important}
+.section-title h2{font-size:clamp(26px,3.5vw,36px)!important}
+nav a,.btn,.kicker,.promise b{font-weight:400!important;letter-spacing:1px!important}
+input,select,button{font-family:var(--site-font)!important}
+</style><style id="editorial-scroll">
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+header{transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+header.scroll-away{transform:translateY(-100%)}
+.hero{min-height:calc(100svh - 120px);background-position:center calc(50% + var(--hero-shift,0px));overflow:hidden}
+.scroll-reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.scroll-reveal.revealed{opacity:1;transform:none}
+main{padding-top:100px}.statement{margin-bottom:85px}.section-title{margin-top:100px}
+.cat{transition:opacity .8s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+@media(max-width:800px){html{scroll-padding-top:82px}.hero{min-height:calc(100svh - 100px)}main{padding-top:65px}.statement{margin-bottom:55px}.section-title{margin-top:70px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.scroll-reveal{opacity:1;transform:none;transition:none}header{transition:none}.hero{background-position:center!important}}
+</style><style id="premium-mobile">
+button,a,input,select{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid #c5a44a;outline-offset:4px}
+@media(max-width:800px){
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom));overflow-x:hidden}
+header{height:72px;padding:0 20px;gap:10px}.right{margin-left:auto;gap:12px}#lang{min-height:44px;min-width:50px;font-size:12px}.cartTrigger{display:grid;place-items:center;min-width:44px;min-height:44px}
+nav{height:48px;padding:0 12px;scroll-snap-type:x proximity}nav a{min-height:44px;display:flex;align-items:center;padding:0 16px;font-size:11px;scroll-snap-align:start}
+.hero{height:auto;min-height:calc(100svh - 196px)}.clean-copy{position:relative;top:auto;left:auto;right:auto;padding:85px 24px 75px;max-width:100%}.clean-copy h1{font-size:clamp(40px,12vw,60px)!important;line-height:1.03!important}.clean-copy p{font-size:16px;line-height:1.65;max-width:30ch}.btn{min-height:48px;padding:15px 22px;border-radius:0;font-size:12px}
+main{padding:60px 20px 32px}.statement p{font-size:15px;line-height:1.75}.categories{margin:0 -20px;padding:0 20px 14px;gap:12px;scroll-padding-left:20px}.cat{min-width:78%;height:260px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.visual{height:180px;font-size:44px}.info{padding:14px 10px}.info h3{font-size:14px;overflow-wrap:anywhere}.price{font-size:17px}.card .btn{font-size:10px;padding:12px 5px;width:100%}.section-title{gap:12px;align-items:center}.section-title h2{font-size:27px!important}.section-title span{font-size:9px;white-space:nowrap}
+.mobilebar{position:fixed;bottom:0;left:0;right:0;height:calc(70px + env(safe-area-inset-bottom));padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(9,9,9,.95);backdrop-filter:blur(18px);border-top:1px solid #333;z-index:40;display:grid;grid-template-columns:repeat(4,1fr)}.mobilebar button{min-height:48px;font-size:9px;letter-spacing:.2px;gap:6px}
+aside{padding:24px 20px calc(100px + env(safe-area-inset-bottom));height:100dvh;max-width:100%;border-left:1px solid #333}aside .row h2{font-size:23px}aside .row .btn{font-size:10px;padding:12px}footer{padding:35px 20px 25px}.social-links{gap:2px}.social-link{width:40px;min-height:44px}
+}
+@media(max-width:360px){.products{grid-template-columns:1fr}.visual{height:220px}}
+</style><style id="mobile-layout-fix">
+[hidden]{display:none!important}#cartShade{position:fixed;inset:0;background:#000a;z-index:60}aside#cart{z-index:61}body.cart-open{overflow:hidden}.cat[role=button],.section-title span[role=button]{cursor:pointer}.shop-status{line-height:1.6;font-size:14px}header .right{flex-shrink:0}.search input{min-width:0}
+@media(max-width:800px){header{position:sticky;top:0;z-index:45;display:flex!important;justify-content:space-between;padding:0 14px;height:68px;gap:8px}header .logo{font-size:20px!important;letter-spacing:1.5px!important;min-width:0}header .right{gap:4px}nav{position:relative;z-index:1}.hero{display:flex;align-items:center;height:auto!important;min-height:440px!important}.clean-copy{position:relative!important;inset:auto!important;padding:55px 22px!important;width:100%;margin:0!important}.clean-copy h1{font-size:clamp(38px,11vw,56px)!important}.categories{display:flex!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity}.cat{flex:0 0 78%;min-width:0!important}.products{align-items:stretch}.info{display:flex;flex-direction:column;height:calc(100% - 180px)}.info .btn{margin-top:auto}.mobilebar{z-index:44}.search{display:none!important}header.search-open{height:132px;flex-wrap:wrap;align-content:center}header.search-open .search{display:flex!important;order:3;flex:0 0 100%;height:44px;margin-top:6px}.search button{min-width:44px}aside#cart{inset:0 0 0 auto;width:100%;height:100dvh;padding:20px 18px calc(24px + env(safe-area-inset-bottom))}.age{height:100dvh;overflow:auto;padding:20px}.age>div{max-width:100%;padding:24px 12px}.age .logo{font-size:28px!important}.promise{margin-top:45px}footer .logo{font-size:26px!important}.section-title{flex-wrap:wrap}.social-links{max-width:100%}}
+</style></head><body>
+<div class="age" id="age"><div><div class="logo"><span>SEX</span>CLICK</div><h2>O luxo do desejo.</h2><p>Experiência exclusiva para adultos.</p><button class="btn" onclick="enter()">ENTRAR · 18+</button></div></div>
+<header><a class="logo" href="#"><span>SEX</span>CLICK</a><div class="search"><input id="q" placeholder="Pesquisar"><button onclick="search()">⌕</button></div><div class="right"><select id="lang" aria-label="Idioma" onchange="setLang(this.value)">
+<option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option>
+<option value="fr">FR</option><option value="de">DE</option><option value="it">IT</option>
+</select><b class="cartTrigger" onclick="toggle()" aria-label="Carrinho de compras"><svg class="cartIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 7H6.1M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm9 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg><span class="cartBadge" id="count">0</span></b></div></header>
+<nav><a href="#colecoes">COLEÇÕES</a><a href="#best">NOVIDADES</a><a href="#best" onclick="filterCategory(0)">PARA ELA</a><a href="#best" onclick="filterCategory(1)">PARA ELE</a><a href="#best" onclick="filterCategory(2)">A DOIS</a><a href="#best" onclick="filterCategory(3)">PRIVATE</a></nav>
+<section class="hero"><div class="copy clean-copy">
+      <div class="kicker">SEXCLICK PRIVATE</div>
+      <h1>O luxo<br><em>do desejo.</em></h1>
+      <p>Uma experiência privada de prazer, design e discrição.</p>
+      <button class="btn" onclick="document.getElementById('colecoes').scrollIntoView()">DESCOBRIR →</button>
+    </div></section>
+<main><section class="statement"><div class="kicker">CURADORIA SEXCLICK</div><h2>Desejo, reduzido ao essencial.</h2><p>Uma seleção de objetos íntimos apresentada com a linguagem de uma casa de luxo.</p></section>
+<section class="categories" id="colecoes"><div class="cat"><div><small>01</small><b>Para Ela</b></div></div><div class="cat"><div><small>02</small><b>Para Ele</b></div></div><div class="cat"><div><small>03</small><b>A Dois</b></div></div><div class="cat"><div><small>04</small><b>Private</b></div></div></section>
+<section id="best"><div class="section-title"><h2>Mais desejados</h2><span role="button" tabindex="0" onclick="showAll()" onkeydown="if(event.key==='Enter')showAll()">VER TODOS →</span></div><div class="products" id="products"></div></section>
+<section class="promise"><div><b>ENVIO DISCRETO</b><small>Privacidade em primeiro lugar</small></div><div><b>SELEÇÃO PREMIUM</b><small>Escolhas com curadoria</small></div><div><b>EUROPA</b><small>Preparada para vários mercados</small></div></section></main>
+<footer><div class="logo"><span>SEX</span>CLICK</div><p>O luxo do desejo.</p><div class="social-links" aria-label="Redes sociais"><button class="social-link" type="button" data-social="Facebook" aria-label="Facebook" title="Facebook"><span class="social-mark" aria-hidden="true" style="background-position:-27px -8px"></span></button><button class="social-link" type="button" data-social="X" aria-label="X" title="X"><span class="social-mark" aria-hidden="true" style="background-position:-76px -8px"></span></button><button class="social-link" type="button" data-social="Instagram" aria-label="Instagram" title="Instagram"><span class="social-mark" aria-hidden="true" style="background-position:-127px -8px"></span></button><button class="social-link" type="button" data-social="YouTube" aria-label="YouTube" title="YouTube"><span class="social-mark" aria-hidden="true" style="background-position:-177px -8px"></span></button><button class="social-link" type="button" data-social="Spotify" aria-label="Spotify" title="Spotify"><span class="social-mark" aria-hidden="true" style="background-position:-227px -8px"></span></button><button class="social-link" type="button" data-social="Discord" aria-label="Discord" title="Discord"><span class="social-mark" aria-hidden="true" style="background-position:-277px -8px"></span></button><button class="social-link" type="button" data-social="TikTok" aria-label="TikTok" title="TikTok"><span class="social-mark" aria-hidden="true" style="background-position:-327px -8px"></span></button></div><p class="social-notice" role="status" hidden></p><small>Pré-lançamento · 18+</small></footer>
+<div id="cartShade" hidden onclick="toggle()"></div><aside id="cart" role="dialog" aria-modal="true" aria-label="Carrinho de compras" hidden><div class="row"><h2>O seu carrinho</h2><button class="btn" onclick="toggle()">FECHAR</button></div><div id="items"></div><h3 id="total"></h3><button class="btn" style="width:100%" onclick="checkoutNotice()">FINALIZAR COMPRA</button></aside>
+<script>
+const P=[['ÉLITE','Para Ela',59.90,'♡'],['NOIR','A Dois',79.90,'∞'],['SIGNATURE','Private',99.90,'♛'],['VELVET','Novidades',69.90,'◇']].map((x,i)=>({id:i+1,n:x[0],c:x[1],p:x[2],e:x[3]}));let C=JSON.parse(localStorage.getItem('sce')||'{}');const eur=n=>n.toLocaleString('pt-PT',{style:'currency',currency:'EUR'});
+function enter(){localStorage.setItem('sce18','1');age.style.display='none'}if(localStorage.getItem('sce18'))age.style.display='none';function render(a=P){products.innerHTML=a.map(p=>`<article class="card"><div class="visual">${p.e}</div><div class="info"><small>${p.tc||p.c}</small><h3>${p.n}</h3><div class="price">${eur(p.p)}</div><button class="btn" onclick="add(${p.id})">${(I18N[localStorage.getItem("sclang")||"pt"]||I18N.pt).add}</button></div></article>`).join('')}function search(){let s=q.value.toLowerCase();const found=P.filter(p=>(p.n+' '+p.c+' '+(p.tc||'')).toLowerCase().includes(s));render(found);if(!found.length)products.innerHTML='<p role="status">'+uiText('emptySearch')+'</p>';best.scrollIntoView()}function add(id){C[id]=(C[id]||0)+1;save();cart.hidden=false;syncCart()}function del(id){delete C[id];save()}function toggle(){cart.hidden=!cart.hidden;syncCart()}function save(){localStorage.setItem('sce',JSON.stringify(C));rc()}function rc(){let n=0,t=0,s='';Object.entries(C).forEach(([id,q])=>{let p=P.find(x=>x.id==id);if(!p)return;n+=q;t+=p.p*q;s+=`<div class="row"><div>${p.n}<br><small>${q} × ${eur(p.p)}</small></div><button class="btn" onclick="del(${id})">×</button></div>`});count.textContent=n;items.innerHTML=s||'<p>'+((I18N[localStorage.getItem("sclang")||"pt"]||I18N.pt).empty)+'</p>';total.textContent=((I18N[localStorage.getItem('sclang')||'pt']||I18N.pt).total)+': '+eur(t)}
+
+const I18N={
+pt:{bag:"CARRINHO",collections:"COLEÇÕES",new:"NOVIDADES",her:"PARA ELA",him:"PARA ELE",couple:"A DOIS",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"O luxo<br><em>do desejo.</em>",desc:"Uma experiência privada de prazer, design e discrição.",discover:"DESCOBRIR →",
+cur:"CURADORIA SEXCLICK",essential:"Desejo, reduzido ao essencial.",intro:"Uma seleção de objetos íntimos apresentada com a linguagem de uma casa de luxo.",
+best:"Mais desejados",all:"VER TODOS →",shipping:"ENVIO DISCRETO",shipping2:"Privacidade em primeiro lugar",premium:"SELEÇÃO PREMIUM",premium2:"Escolhas com curadoria",europe:"EUROPA",europe2:"Preparada para vários mercados",
+home:"INÍCIO",mobileCollections:"COLEÇÕES",mobileDiscover:"DESCOBRIR",mobileBag:"CARRINHO",search:"Pesquisar",add:"ADICIONAR",cart:"O seu carrinho",close:"FECHAR",empty:"O carrinho está vazio.",total:"Total",checkout:"FINALIZAR COMPRA",age:"O luxo do desejo.",ageText:"Experiência exclusiva para adultos.",enter:"ENTRAR · 18+",pre:"Pré-lançamento · 18+"},
+en:{bag:"BAG",collections:"COLLECTIONS",new:"NEW",her:"FOR HER",him:"FOR HIM",couple:"FOR COUPLES",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"The luxury<br><em>of desire.</em>",desc:"A private experience of pleasure, design and discretion.",discover:"DISCOVER →",
+cur:"SEXCLICK CURATION",essential:"Desire, reduced to the essential.",intro:"A selection of intimate objects presented with the language of a luxury house.",
+best:"Most desired",all:"VIEW ALL →",shipping:"DISCREET DELIVERY",shipping2:"Privacy comes first",premium:"PREMIUM SELECTION",premium2:"Carefully curated choices",europe:"EUROPE",europe2:"Designed for multiple markets",
+home:"HOME",mobileCollections:"COLLECTIONS",mobileDiscover:"DISCOVER",mobileBag:"BAG",search:"Search",add:"ADD",cart:"Your bag",close:"CLOSE",empty:"Your bag is empty.",total:"Total",checkout:"CHECKOUT",age:"The luxury of desire.",ageText:"An exclusive experience for adults.",enter:"ENTER · 18+",pre:"Pre-launch · 18+"},
+es:{bag:"BOLSA",collections:"COLECCIONES",new:"NOVEDADES",her:"PARA ELLA",him:"PARA ÉL",couple:"EN PAREJA",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"El lujo<br><em>del deseo.</em>",desc:"Una experiencia privada de placer, diseño y discreción.",discover:"DESCUBRIR →",cur:"CURADURÍA SEXCLICK",essential:"Deseo, reducido a lo esencial.",intro:"Una selección de objetos íntimos presentada con el lenguaje de una casa de lujo.",best:"Más deseados",all:"VER TODOS →",shipping:"ENVÍO DISCRETO",shipping2:"La privacidad es lo primero",premium:"SELECCIÓN PREMIUM",premium2:"Selección cuidadosamente curada",europe:"EUROPA",europe2:"Preparada para varios mercados",home:"INICIO",mobileCollections:"COLECCIONES",mobileDiscover:"DESCUBRIR",mobileBag:"BOLSA",search:"Buscar",add:"AÑADIR",cart:"Tu bolsa",close:"CERRAR",empty:"Tu bolsa está vacía.",total:"Total",checkout:"FINALIZAR COMPRA",age:"El lujo del deseo.",ageText:"Experiencia exclusiva para adultos.",enter:"ENTRAR · 18+",pre:"Prelanzamiento · 18+"},
+fr:{bag:"PANIER",collections:"COLLECTIONS",new:"NOUVEAUTÉS",her:"POUR ELLE",him:"POUR LUI",couple:"À DEUX",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"Le luxe<br><em>du désir.</em>",desc:"Une expérience privée de plaisir, de design et de discrétion.",discover:"DÉCOUVRIR →",cur:"SÉLECTION SEXCLICK",essential:"Le désir, réduit à l’essentiel.",intro:"Une sélection d’objets intimes présentée dans le langage d’une maison de luxe.",best:"Les plus désirés",all:"VOIR TOUT →",shipping:"LIVRAISON DISCRÈTE",shipping2:"La confidentialité avant tout",premium:"SÉLECTION PREMIUM",premium2:"Des choix soigneusement sélectionnés",europe:"EUROPE",europe2:"Conçue pour plusieurs marchés",home:"ACCUEIL",mobileCollections:"COLLECTIONS",mobileDiscover:"DÉCOUVRIR",mobileBag:"PANIER",search:"Rechercher",add:"AJOUTER",cart:"Votre panier",close:"FERMER",empty:"Votre panier est vide.",total:"Total",checkout:"COMMANDER",age:"Le luxe du désir.",ageText:"Une expérience exclusivement réservée aux adultes.",enter:"ENTRER · 18+",pre:"Pré-lancement · 18+"},
+de:{bag:"TASCHE",collections:"KOLLEKTIONEN",new:"NEU",her:"FÜR SIE",him:"FÜR IHN",couple:"FÜR PAARE",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"Der Luxus<br><em>der Begierde.</em>",desc:"Ein privates Erlebnis aus Genuss, Design und Diskretion.",discover:"ENTDECKEN →",cur:"SEXCLICK KURATION",essential:"Begehren, auf das Wesentliche reduziert.",intro:"Eine Auswahl intimer Objekte in der Sprache eines Luxushauses präsentiert.",best:"Am meisten begehrt",all:"ALLE ANSEHEN →",shipping:"DISKRETER VERSAND",shipping2:"Privatsphäre an erster Stelle",premium:"PREMIUM-AUSWAHL",premium2:"Sorgfältig kuratierte Auswahl",europe:"EUROPA",europe2:"Für mehrere Märkte konzipiert",home:"START",mobileCollections:"KOLLEKTIONEN",mobileDiscover:"ENTDECKEN",mobileBag:"TASCHE",search:"Suchen",add:"HINZUFÜGEN",cart:"Ihre Tasche",close:"SCHLIESSEN",empty:"Ihre Tasche ist leer.",total:"Gesamt",checkout:"ZUR KASSE",age:"Der Luxus der Begierde.",ageText:"Ein exklusives Erlebnis für Erwachsene.",enter:"EINTRETEN · 18+",pre:"Vorabversion · 18+"},
+it:{bag:"BORSA",collections:"COLLEZIONI",new:"NOVITÀ",her:"PER LEI",him:"PER LUI",couple:"PER DUE",private:"PRIVATE",
+kicker:"SEXCLICK PRIVATE",hero:"Il lusso<br><em>del desiderio.</em>",desc:"Un’esperienza privata di piacere, design e discrezione.",discover:"SCOPRI →",cur:"SELEZIONE SEXCLICK",essential:"Desiderio, ridotto all’essenziale.",intro:"Una selezione di oggetti intimi presentata con il linguaggio di una maison di lusso.",best:"I più desiderati",all:"VEDI TUTTI →",shipping:"SPEDIZIONE DISCRETA",shipping2:"La privacy prima di tutto",premium:"SELEZIONE PREMIUM",premium2:"Scelte accuratamente selezionate",europe:"EUROPA",europe2:"Pensata per più mercati",home:"HOME",mobileCollections:"COLLEZIONI",mobileDiscover:"SCOPRI",mobileBag:"BORSA",search:"Cerca",add:"AGGIUNGI",cart:"La tua borsa",close:"CHIUDI",empty:"La tua borsa è vuota.",total:"Totale",checkout:"CHECKOUT",age:"Il lusso del desiderio.",ageText:"Un’esperienza esclusiva per adulti.",enter:"ENTRA · 18+",pre:"Pre-lancio · 18+"}
+};
+function setLang(l){
+ l = Object.hasOwn(I18N,l) ? l : "pt";
+ localStorage.setItem('sclang',l); document.documentElement.lang=l==='pt'?'pt-PT':l;
+ const t=I18N[l]||I18N.pt, nav=document.querySelectorAll('nav a');
+ [t.collections,t.new,t.her,t.him,t.couple,t.private].forEach((x,i)=>{if(nav[i])nav[i].textContent=x});
+ document.querySelector('.clean-copy .kicker').textContent=t.kicker;
+ document.querySelector('.clean-copy h1').innerHTML=t.hero;
+ document.querySelector('.clean-copy p').textContent=t.desc;
+ document.querySelector('.clean-copy .btn').textContent=t.discover;
+ document.querySelector('.statement .kicker').textContent=t.cur;
+ document.querySelector('.statement h2').textContent=t.essential;
+ document.querySelector('.statement p').textContent=t.intro;
+ document.querySelector('.section-title h2').textContent=t.best;
+ document.querySelector('.section-title span').textContent=t.all;
+ const pr=document.querySelectorAll('.promise div'); if(pr[0])pr[0].innerHTML=`<b>${t.shipping}</b><small>${t.shipping2}</small>`;
+ if(pr[1])pr[1].innerHTML=`<b>${t.premium}</b><small>${t.premium2}</small>`; if(pr[2])pr[2].innerHTML=`<b>${t.europe}</b><small>${t.europe2}</small>`;
+ const mb=document.querySelectorAll('.mobilebar button'); [t.home,t.mobileCollections,t.mobileDiscover,t.mobileBag].forEach((x,i)=>{if(mb[i]){let ic=mb[i].querySelector('i').outerHTML;mb[i].innerHTML=ic+x}});
+ const inp=document.querySelector('#q'); if(inp)inp.placeholder=t.search;
+ const ageh=document.querySelector('.age h2'), agep=document.querySelector('.age p'), ageb=document.querySelector('.age .btn');
+ if(ageh)ageh.textContent=t.age;if(agep)agep.textContent=t.ageText;if(ageb)ageb.textContent=t.enter;
+ const foot=document.querySelector('footer small');if(foot)foot.textContent=t.pre;
+ const cb=document.querySelector('aside .row h2');if(cb)cb.textContent=t.cart;
+ const close=document.querySelector('aside .row .btn');if(close)close.textContent=t.close;
+ const checkout=document.querySelector('aside > .btn');if(checkout)checkout.textContent=t.checkout;
+ document.querySelectorAll('.cat b').forEach((el,i)=>el.textContent=[t.her,t.him,t.couple,t.private][i]); document.querySelector('footer > p').textContent=t.age; document.querySelector('.cartTrigger').setAttribute('aria-label',t.cart); const cm={'Para Ela':t.her,'A Dois':t.couple,'Private':t.private,'Novidades':t.new}; P.forEach(p=>p.tc=cm[p.c]||p.c); render();rc(); document.getElementById('lang').value=l;
+}
+document.addEventListener('DOMContentLoaded',()=>setLang(localStorage.getItem('sclang')||'pt'));
+
+</script><div class="mobilebar"><button onclick="window.scrollTo({top:0,behavior:'smooth'})"><i>⌂</i>INÍCIO</button><button onclick="document.getElementById('colecoes').scrollIntoView({behavior:'smooth'})"><i>◇</i>COLEÇÕES</button><button onclick="openSearch()"><i>⌕</i>DESCOBRIR</button><button onclick="toggle()"><i><svg class="cartIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 7H6.1M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm9 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg></i>CARRINHO</button></div><script src="redes-sociais.js"></script><script src="scroll.js"></script><script src="interactions.js"></script></body></html>

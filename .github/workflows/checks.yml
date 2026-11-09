@@ -1,0 +1,21 @@
+name: Verificar código
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - run: find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: node --check wp-content/themes/sexclick/assets/shop.js
+      - run: php tests/contract-test.php
+      - run: php tests/operations-test.php
+      - run: python3 scripts/check_project.py

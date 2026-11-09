@@ -2,7 +2,7 @@
 
 Projeto para abrir no Codex e instalar numa instância WordPress/WooCommerce.
 
-**Estado: código preparado; ainda não instalado nem validado numa instância WooCommerce. Não está certificado pela Dreamlove.** A integração com o fornecedor está pendente da conta de revendedor e do conector/documentação técnica. O tema usa os mecanismos normais do WooCommerce para facilitar essa integração.
+**Estado: código testado com WordPress/WooCommerce em CI; instalação na Hostinger e integração Dreamlove pendentes. Não está certificado pela Dreamlove.** A integração com o fornecedor está pendente da conta de revendedor e do conector/documentação técnica. O tema usa os mecanismos normais do WooCommerce para facilitar essa integração.
 
 ## Incluído
 - Tema `wp-content/themes/sexclick`: loja responsiva, pesquisa, catálogo, categorias, páginas de produto e variantes, carrinho, checkout e conta pelo WooCommerce.
@@ -11,6 +11,10 @@ Projeto para abrir no Codex e instalar numa instância WordPress/WooCommerce.
 - `docs/COMPATIBILIDADE_DREAMLOVE.md`: todas as funcionalidades pedidas, evidências públicas e testes de aceitação.
 - `docs/CODEX.md`: instruções para continuar o desenvolvimento.
 - `versao-anterior/`: código recuperado da demonstração original e importador preliminar, fora dos plugins ativos.
+
+## Instalação sem migração
+
+O ecrã «A criar o seu site… Ver em Migrações» é do serviço da Hostinger, não do tema. Estes ZIP não são backups completos e não incluem base de dados, WordPress ou WooCommerce. Não os enviar para Migrações. Consultar [GUIA-HOSTINGER.md](docs/GUIA-HOSTINGER.md). Depois de ativar WooCommerce, tema e plugin, abrir WooCommerce > SEXCLICK · Dreamlove e usar «Preparar páginas e menu em falta». O assistente não substitui páginas existentes nem ativa vendas.
 
 ## Instalação em staging
 1. Criar um WordPress separado em `/loja`, com base de dados própria, HTTPS e backup do site atual.

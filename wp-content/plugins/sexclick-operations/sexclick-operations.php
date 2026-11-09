@@ -2,12 +2,13 @@
 /**
  * Plugin Name: SEXCLICK Operations
  * Description: Estado de preparação Dreamlove e proteção do lançamento comercial.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires PHP: 8.1
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) exit;
 require_once __DIR__.'/integration-contract.php';
+require_once __DIR__.'/setup-tools.php';
 add_action('admin_menu',function(){add_submenu_page('woocommerce','SEXCLICK · Dreamlove','SEXCLICK · Dreamlove','manage_woocommerce','sexclick-operations','scops_admin');});
 function scops_requirements() {
  return [
@@ -38,6 +39,7 @@ function scops_admin() {
   update_option('scops_sales_enabled',isset($_POST['sales_enabled']) && scops_ready(),false);
   echo '<div class="notice notice-success"><p>Configuração guardada.</p></div>';
  }
+ scops_setup_panel();
  $verified=(array)get_option('scops_verified',[]);
  echo '<div class="wrap"><h1>SEXCLICK · Dreamlove</h1><p><strong>'.(scops_live()?'Vendas ativadas':'Preparação — compras bloqueadas').'</strong></p><p>Estas verificações são declarações do administrador após testes reais. Não constituem deteção automática nem certificação da Dreamlove. Este módulo não transmite encomendas nem sincroniza stock.</p><form method="post">';
  wp_nonce_field('scops_settings');

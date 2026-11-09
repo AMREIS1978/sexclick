@@ -28,7 +28,8 @@ function sc_icon($name) {
  return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="'.esc_attr($paths[$name] ?? $paths['grid']).'"/></svg>';
 }
 function sc_search_form() {
- ?><form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="sc-search"><label for="sc-query"><?php esc_html_e('O que procura?', 'sexclick'); ?></label><div><input type="search" id="sc-query" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="<?php esc_attr_e('Pesquisar produtos ou marcas', 'sexclick'); ?>"><input type="hidden" name="post_type" value="product"><button type="submit" aria-label="<?php esc_attr_e('Pesquisar','sexclick'); ?>"><?php echo sc_icon('search'); ?></button></div></form><?php
+ $field_id=wp_unique_id('sc-query-');
+ ?><form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="sc-search"><label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('O que procura?', 'sexclick'); ?></label><div><input type="search" id="<?php echo esc_attr($field_id); ?>" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="<?php esc_attr_e('Pesquisar produtos ou marcas', 'sexclick'); ?>"><input type="hidden" name="post_type" value="product"><button type="submit" aria-label="<?php esc_attr_e('Pesquisar','sexclick'); ?>"><?php echo sc_icon('search'); ?></button></div></form><?php
 }
 add_action('customize_register', function ($c) {
  $c->add_section('sc_visual',['title'=>'SEXCLICK — Imagem principal','priority'=>30]);

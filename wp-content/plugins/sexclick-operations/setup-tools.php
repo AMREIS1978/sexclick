@@ -8,21 +8,22 @@ function scops_setup_pages($set_home = false) {
  if (!current_user_can('manage_options')) return new WP_Error('permission', 'É necessário acesso de administrador.');
  if (!class_exists('WooCommerce') || !is_callable(['WC_Install','create_pages'])) return new WP_Error('woocommerce', 'Instale e ative WooCommerce primeiro.');
  if (scops_live()) return new WP_Error('live', 'A loja já aceita compras. Reveja as páginas nas definições WooCommerce.');
- $before=[];
- foreach (['shop','cart','checkout','myaccount'] as $slug) $before[$slug]=wc_get_page_id($slug);
- WC_Install::create_pages();
  $titles=['shop'=>'Coleção','cart'=>'Carrinho','checkout'=>'Finalizar compra','myaccount'=>'A minha conta'];
- $codes=['cart'=>'woocommerce_cart','checkout'=>'woocommerce_checkout','myaccount'=>'woocommerce_my_account'];
+ $defaults=static function($pages) use ($titles) {
+  $codes=['cart'=>'woocommerce_cart','checkout'=>'woocommerce_checkout','myaccount'=>'woocommerce_my_account'];
+  foreach ($titles as $slug=>$title) if (isset($pages[$slug])) {
+   $pages[$slug]['title']=$title;
+   if (isset($codes[$slug])) $pages[$slug]['content']='['.$codes[$slug].']';
+  }
+  return $pages;
+ };
+ // Customize new-page defaults through WooCommerce's API; never rewrite existing pages.
+ add_filter('woocommerce_create_pages',$defaults,20);
+ try { WC_Install::create_pages(); }
+ finally { remove_filter('woocommerce_create_pages',$defaults,20); }
  foreach ($titles as $slug=>$title) {
   $id=wc_get_page_id($slug);
-  if ($id<=0 || get_post_status($id)!=='publish') return new WP_Error('page', 'Não foi possível preparar a página: '.$title.'. Verifique as páginas e permissões no WordPress.');
-  // Existing pages and their checkout/block configuration are never replaced.
-  if ($before[$slug]<=0) {
-   $data=['ID'=>$id,'post_title'=>$title];
-   if (isset($codes[$slug])) $data['post_content']='['.$codes[$slug].']';
-   $result=wp_update_post($data,true);
-   if (is_wp_error($result)) return $result;
-  }
+  if ($id<=0 || get_post_type($id)!=='page' || get_post_status($id)!=='publish') return new WP_Error('page', 'Não foi possível preparar a página: '.$title.'. Verifique as páginas e permissões no WordPress.');
  }
  if ($set_home && !get_option('page_on_front')) {
   $home=get_page_by_path('inicio-sexclick',OBJECT,'page');
@@ -57,7 +58,7 @@ function scops_setup_pages($set_home = false) {
 }
 
 function scops_setup_request() {
- if (!current_user_can('manage_options')) wp_die('É necessário acesso de administrador.',403);
+ if (!current_user_can('manage_options')) wp_die('É necessário acesso de administrador.','',['response'=>403]);
  check_admin_referer('scops_setup');
  $result=scops_setup_pages(!empty($_POST['set_home']));
  set_transient('scops_setup_result_'.get_current_user_id(),is_wp_error($result) ? $result->get_error_message() : 'Páginas e menu preparados. As configurações comerciais e a ligação Dreamlove continuam pendentes.',60);

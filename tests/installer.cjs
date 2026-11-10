@@ -13,6 +13,14 @@ const fs=require('node:fs');
  await page.locator('#wp-submit').click();
  await page.waitForURL('**/wp-admin/**');
  await page.goto(base+'/wp-admin/admin.php?page=sexclick-hostinger');
+ // Real rejected nonce: show the error and re-enable the resume button.
+ const nonce=await page.evaluate(()=>sexclickInstaller.nonce);
+ await page.evaluate(()=>{sexclickInstaller.nonce='invalid-ci-nonce';});
+ await page.locator('#sch-start').click();
+ await page.locator('[data-step="preflight"][data-status="error"]').waitFor();
+ await page.locator('#sch-start:not([disabled])').waitFor();
+ assert.match(await page.locator('#sch-result').innerText(),/sessão expirou/i);
+ await page.evaluate(value=>{sexclickInstaller.nonce=value;},nonce);
  await page.locator('#sch-start').click();
  await page.locator('[data-step="verify"][data-status="done"]').waitFor({timeout:180000});
  assert.equal(await page.locator('[data-status="done"]').count(),8);

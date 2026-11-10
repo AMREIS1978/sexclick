@@ -15,3 +15,6 @@ dist/
 *.mo
 
 vendor-cache/
+
+wp-content/plugins/sexclick-hostinger/payload/
+__pycache__/

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SEXCLICK Operations
  * Description: Estado de preparação Dreamlove e proteção do lançamento comercial.
- * Version: 1.1.0
+ * Version: 2.0.0
  * Requires PHP: 8.1
  * Requires Plugins: woocommerce
  */

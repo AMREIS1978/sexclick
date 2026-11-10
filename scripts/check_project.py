@@ -5,7 +5,7 @@ for name in required:
  assert (root/name).is_file(),name
  assert (root/name).stat().st_size,name
 for path in (root/'wp-content').rglob('*'):
- if path.is_file() and path.suffix != ".mo":
+ if path.is_file() and path.suffix not in {".mo", ".zip"}:
   data=path.read_text()
   assert 'localStorage' not in data,str(path)
   assert 'api.dreamlove' not in data,str(path)

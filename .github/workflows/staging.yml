@@ -37,14 +37,12 @@ jobs:
           ci_admin_pass="$(openssl rand -hex 24)"
           echo "::add-mask::$ci_admin_pass"
           printf '%s\n' "$ci_admin_pass" | wp --path=/tmp/sexclick-wp core install --url=http://127.0.0.1:8080 --title=SEXCLICK --admin_user=sexclick-ci --admin_email=ci@example.invalid --skip-email --prompt=admin_password
-          wp --path=/tmp/sexclick-wp plugin install woocommerce
-          cp -R wp-content/themes/sexclick /tmp/sexclick-wp/wp-content/themes/
-          cp -R wp-content/plugins/sexclick-operations /tmp/sexclick-wp/wp-content/plugins/
-          mkdir -p /tmp/sexclick-wp/wp-content/mu-plugins
-          cp wp-content/mu-plugins/sexclick-first-run.php /tmp/sexclick-wp/wp-content/mu-plugins/
-          SEXCLICK_CI=1 wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/bootstrap-smoke.php"
-          bash scripts/setup-staging.sh /tmp/sexclick-wp
-          SEXCLICK_CI=1 wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/wordpress-smoke.php"
+          printf 'SEXCLICK_CI_PASSWORD=%s\n' "$ci_admin_pass" >> "$GITHUB_ENV"
+          mkdir -p vendor-cache
+          curl --fail --location --retry 2 --output vendor-cache/woocommerce.zip https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip
+          python3 scripts/package-hostinger.py
+          wp --path=/tmp/sexclick-wp plugin install "$PWD/dist/SEXCLICK-INSTALAR-NO-WORDPRESS-2.0.zip" --activate
+          wp --path=/tmp/sexclick-wp language core install pt_PT --activate
       - name: Iniciar loja de testes
         env:
           WP_ENVIRONMENT_TYPE: local
@@ -55,7 +53,16 @@ jobs:
         run: |
           npm install --prefix /tmp/sexclick-ui playwright@1.62.1
           /tmp/sexclick-ui/node_modules/.bin/playwright install --with-deps chromium
-          PLAYWRIGHT_MODULE=/tmp/sexclick-ui/node_modules/playwright node tests/mobile.cjs
+          PLAYWRIGHT_MODULE=/tmp/sexclick-ui/node_modules/playwright node tests/installer.cjs
+      - name: Validar configuração da loja
+        env:
+          WP_ENVIRONMENT_TYPE: local
+          SEXCLICK_CI: '1'
+        run: |
+          wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/installer-smoke.php"
+          wp --path=/tmp/sexclick-wp eval-file "$PWD/tests/wordpress-smoke.php"
+      - name: Verificar montra e telemóvel
+        run: PLAYWRIGHT_MODULE=/tmp/sexclick-ui/node_modules/playwright node tests/mobile.cjs
       - name: Gerar pacotes instaláveis
         run: python3 scripts/package.py
       - uses: actions/upload-artifact@v4

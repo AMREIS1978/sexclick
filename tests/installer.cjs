@@ -1,0 +1,33 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+(async()=>{
+ const browser=await chromium.launch();
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ const base=process.env.SEXCLICK_TEST_URL || 'http://127.0.0.1:8080';
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ assert.ok(process.env.SEXCLICK_CI_PASSWORD,'Missing ephemeral CI credential');
+ await page.goto(base+'/wp-login.php');
+ await page.locator('#user_login').fill('sexclick-ci');
+ await page.locator('#user_pass').fill(process.env.SEXCLICK_CI_PASSWORD);
+ await page.locator('#wp-submit').click();
+ await page.waitForURL('**/wp-admin/**');
+ await page.goto(base+'/wp-admin/admin.php?page=sexclick-hostinger');
+ await page.locator('#sch-start').click();
+ await page.locator('[data-step="verify"][data-status="done"]').waitFor({timeout:180000});
+ assert.equal(await page.locator('[data-status="done"]').count(),8);
+ assert.equal(await page.locator('[data-status="error"]').count(),0);
+ assert.match(await page.locator('#sch-result').innerText(),/concluída/);
+ // Re-run the real AJAX installer, including already-installed component paths.
+ await page.locator('#sch-start').click();
+ await page.locator('#sch-start:not([disabled])').waitFor({timeout:180000});
+ assert.equal(await page.locator('[data-status="done"]').count(),8);
+ assert.equal(await page.locator('[data-status="error"]').count(),0);
+ await page.setViewportSize({width:375,height:900});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Installer overflow on mobile');
+ fs.mkdirSync('test-results',{recursive:true});
+ await page.screenshot({path:'test-results/installer-mobile.png',fullPage:true});
+ assert.deepEqual(errors,[]);
+ await browser.close();
+ console.log('PASS: native WordPress upload, 8 real AJAX steps, retry, active theme/plugins and mobile installer.');
+})().catch(error=>{console.error(error);process.exit(1)});

@@ -9,8 +9,8 @@ add_action('after_setup_theme', function () {
  load_theme_textdomain('sexclick', get_template_directory().'/languages');
 });
 add_action('wp_enqueue_scripts', function () {
- wp_enqueue_style('sexclick', get_template_directory_uri().'/assets/shop.css', [], '1.0.0');
- wp_enqueue_script('sexclick',get_template_directory_uri().'/assets/shop.js', [], '1.0.0', true);
+ wp_enqueue_style('sexclick', get_template_directory_uri().'/assets/shop.css', [], (string)filemtime(get_template_directory().'/assets/shop.css'));
+ wp_enqueue_script('sexclick',get_template_directory_uri().'/assets/shop.js', [], (string)filemtime(get_template_directory().'/assets/shop.js'), true);
 });
 add_filter('loop_shop_columns', function () { return 4; });
 add_filter('loop_shop_per_page', function () { return 24; });

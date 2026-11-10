@@ -27,6 +27,7 @@ update_option('scops_sales_enabled',true);
 sch_assert(is_wp_error(sch_run('configure')),'Instalação não pode alterar uma loja com vendas ativas.');
 update_option('scops_sales_enabled',false);
 sch_assert(get_stylesheet()==='sexclick','Tema incorreto.');
+sch_assert(get_option('woocommerce_coming_soon')==='no','Montra continua escondida apesar da opção selecionada.');
 sch_assert(is_plugin_active('woocommerce/woocommerce.php') && is_plugin_active('sexclick-operations/sexclick-operations.php'),'Plugins não ficaram ativos.');
 wp_set_current_user(0);
 WP_CLI::success('Instalador: permissões, passos permitidos, integridade e proteção de loja ativa verificados.');

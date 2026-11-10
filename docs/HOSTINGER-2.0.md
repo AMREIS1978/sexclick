@@ -10,6 +10,8 @@ Este é um plugin para carregar **dentro de WordPress**, em Plugins > Adicionar 
 
 1. Numa instalação WordPress funcional (nova, sem encomendas, de preferência em `/loja` para preservar o site atual), abrir **Plugins > Adicionar > Carregar plugin**, escolher o ZIP e ativá-lo.
 2. Abrir o novo menu **Instalar SEXCLICK** e clicar em **Preparar a minha loja**. WooCommerce, o tema e Operations são instalados a partir de ficheiros incluídos. Não é necessário carregar os três componentes separadamente. Se já existir SEXCLICK anterior, selecionar a opção de atualização; é criada primeiro uma cópia do seu código, mantendo imagens e opções.
+A opção «Tornar a montra pública» desativa a página «Em breve» de WooCommerce. As compras continuam bloqueadas pelo Operations. Se não pretende mostrar a montra, desmarcar essa opção.
+
 3. No fim, abrir **Ver o site**. Continuar em **WooCommerce > SEXCLICK · Dreamlove** para preparar o catálogo, pagamentos, envios e dados reais da loja. Escolher Português de Portugal nas definições WordPress e EUR nas definições WooCommerce. Carregar a fotografia principal no personalizador do tema.
 
 O instalador executa oito pedidos independentes. Se uma ligação falhar, mostra o passo e a mensagem. «Retomar instalação» verifica o que já foi instalado; não cria duplicados. Não usa um processo de importação de milhares de produtos durante a instalação.

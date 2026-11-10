@@ -16,7 +16,7 @@
     const timer=setTimeout(()=>controller.abort(),90000);
     let response,data;
     try {
-     response=await fetch(sexclickInstaller.url,{method:'POST',credentials:'same-origin',signal:controller.signal,body:new URLSearchParams({action:'sch_step',nonce:sexclickInstaller.nonce,step,overwrite:document.querySelector('#sch-overwrite').checked?'1':'',set_home:document.querySelector('#sch-home').checked?'1':''})});
+     response=await fetch(sexclickInstaller.url,{method:'POST',credentials:'same-origin',signal:controller.signal,body:new URLSearchParams({action:'sch_step',nonce:sexclickInstaller.nonce,step,overwrite:document.querySelector('#sch-overwrite').checked?'1':'',set_home:document.querySelector('#sch-home').checked?'1':'',show_catalog:document.querySelector('#sch-catalog').checked?'1':''})});
      try{data=await response.json();}catch{throw new Error('O servidor devolveu uma página em vez da resposta de instalação. Verifique a sessão WordPress e o registo PHP na Hostinger.');}
      if(!response.ok || !data.success)throw new Error(data?.data?.message || 'O alojamento recusou este passo.');
     }catch(error){

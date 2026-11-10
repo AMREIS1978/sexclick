@@ -37,7 +37,7 @@ add_action('admin_enqueue_scripts',function($hook){
 });
 function sch_page(){
  if (!sch_allowed()) {echo '<div class="wrap"><h1>SEXCLICK</h1><p>Entre como administrador numa instalação WordPress individual, com permissão para instalar plugins e temas.</p></div>';return;}
- echo '<div class="wrap sch-wrap"><p class="sch-label">SEXCLICK · HOSTINGER</p><h1>A sua loja, passo a passo.</h1><p class="sch-intro">Instala os componentes locais, prepara as páginas e confirma o resultado. Se houver uma falha, pare aqui e retome neste mesmo ecrã.</p><div class="sch-card"><h2>Antes de começar</h2><p>Use uma instalação WordPress nova, de preferência em <strong>/loja</strong>, preservando o site atual. Este instalador não é um backup para o serviço de Migrações.</p><p>Não ativa vendas, não configura pagamentos e não liga a Dreamlove. A emissão de SSL é feita pelo alojamento.</p><label><input type="checkbox" id="sch-overwrite"> Atualizar o código SEXCLICK que já exista (cria primeiro uma cópia dos ficheiros; mantém as opções e as imagens).</label><label><input type="checkbox" id="sch-home" checked> Criar a página inicial se ainda não existir uma atribuída.</label><p><button type="button" class="button button-primary button-hero" id="sch-start">Preparar a minha loja</button></p><noscript><p>Ative JavaScript para executar o assistente. O tema e o WooCommerce não precisam deste assistente para funcionar depois de instalados.</p></noscript></div><ol class="sch-steps">';
+ echo '<div class="wrap sch-wrap"><p class="sch-label">SEXCLICK · HOSTINGER</p><h1>A sua loja, passo a passo.</h1><p class="sch-intro">Instala os componentes locais, prepara as páginas e confirma o resultado. Se houver uma falha, pare aqui e retome neste mesmo ecrã.</p><div class="sch-card"><h2>Antes de começar</h2><p>Use uma instalação WordPress nova, de preferência em <strong>/loja</strong>, preservando o site atual. Este instalador não é um backup para o serviço de Migrações.</p><p>Não ativa vendas, não configura pagamentos e não liga a Dreamlove. A emissão de SSL é feita pelo alojamento.</p><label><input type="checkbox" id="sch-overwrite"> Atualizar o código SEXCLICK que já exista (cria primeiro uma cópia dos ficheiros; mantém as opções e as imagens).</label><label><input type="checkbox" id="sch-home" checked> Criar a página inicial se ainda não existir uma atribuída.</label><label><input type="checkbox" id="sch-catalog" checked> Tornar a montra pública, mantendo as compras bloqueadas até à configuração comercial.</label><p><button type="button" class="button button-primary button-hero" id="sch-start">Preparar a minha loja</button></p><noscript><p>Ative JavaScript para executar o assistente. O tema e o WooCommerce não precisam deste assistente para funcionar depois de instalados.</p></noscript></div><ol class="sch-steps">';
  foreach(sch_steps() as $key=>$label) echo '<li data-step="'.esc_attr($key).'"><span class="sch-state">Por executar</span><strong>'.esc_html($label).'</strong><p class="sch-detail"></p></li>';
  echo '</ol><div id="sch-result" role="status" aria-live="polite"></div><p><a class="button" href="'.esc_url(home_url('/')).'">Ver o site</a> <a class="button" href="'.esc_url(admin_url('admin.php?page=sexclick-operations')).'">Preparação Dreamlove</a></p><p class="description">O diagnóstico HTTPS confirma apenas a configuração dos endereços WordPress. Não certifica o SSL público nem a segurança de toda a loja.</p></div>';
 }
@@ -110,7 +110,7 @@ function sch_install($key,$overwrite){
  if (!$result) return sch_error('install','Falhou a extração de '.$slug.'. Verifique permissões e espaço livre; retome depois.');
  return ['message'=>'Instalado a partir do pacote local.'];
 }
-function sch_run($step,$overwrite=false,$set_home=false){
+function sch_run($step,$overwrite=false,$set_home=false,$show_catalog=false){
  if (!sch_allowed()) return sch_error('permission','Só o administrador pode preparar a loja.');
  if (!array_key_exists($step,sch_steps())) return sch_error('step','Passo de instalação desconhecido.');
  if ($step==='preflight') return sch_preflight();
@@ -130,6 +130,7 @@ function sch_run($step,$overwrite=false,$set_home=false){
   if (get_stylesheet()!=='sexclick') switch_theme('sexclick');
   $result=scops_setup_pages($set_home);
   if (is_wp_error($result)) return $result;
+  if ($show_catalog) update_option('woocommerce_coming_soon','no');
   update_option('sch_configured_version',SCH_VERSION,false);
   return ['message'=>'Tema ativo; páginas e menu em falta preparados. Configurações, imagens e páginas existentes preservadas.'];
  }
@@ -151,7 +152,7 @@ add_action('wp_ajax_sch_step',function(){
  $step=isset($_POST['step'])?sanitize_key(wp_unslash($_POST['step'])):'';
  $buffer_level=ob_get_level();ob_start();
  try {
-  $result=sch_run($step,!empty($_POST['overwrite']),!empty($_POST['set_home']));
+  $result=sch_run($step,!empty($_POST['overwrite']),!empty($_POST['set_home']),!empty($_POST['show_catalog']));
   if (is_wp_error($result)) {$response=['success'=>false,'data'=>['message'=>$result->get_error_message()]];}
   else {$response=['success'=>true,'data'=>$result];}
  } catch(Throwable $error) {
